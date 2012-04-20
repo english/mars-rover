@@ -5,6 +5,9 @@ module MarsRover
   class Rover
     attr_reader :x_coordinate, :y_coordinate, :orientation
 
+    VALID_ORIENTATIONS = %w(N E S W)
+    VALID_COMMANDS     = %w(L R M)
+
     def initialize(x, y, orientation)
       raise InvalidOrientationError unless valid_orientation?(orientation)
 
@@ -22,11 +25,11 @@ module MarsRover
     private
 
     def valid_orientation?(orientation)
-      %w(N E S W).include?(orientation)
+      VALID_ORIENTATIONS.include?(orientation)
     end
 
     def valid_command?(code)
-      %w(L R M).include?(code)
+      VALID_COMMANDS.include?(code)
     end
 
     def move
