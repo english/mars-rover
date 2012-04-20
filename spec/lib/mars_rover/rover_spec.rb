@@ -14,7 +14,7 @@ module MarsRover
         subject.orientation.should == 'N'
       end
 
-      it "raises an exception when it isn't N, E, S or W" do
+      it "raises an error when it isn't N, E, S or W" do
         %w(A 2 J sd | Z s).each do |bad_orientation|
           lambda {
             Rover.new(0, 0, bad_orientation)
@@ -39,6 +39,16 @@ module MarsRover
           subject.command('M')
           subject.x_coordinate.should == 0
           subject.y_coordinate.should == 1
+        end
+      end
+
+      context "when given bad input" do
+        it "raises an error" do
+          %w(0 A z ? #).each do |bad_command|
+            lambda {
+              subject.command(bad_command)
+            }.should raise_error(InvalidCommandError)
+          end
         end
       end
     end
