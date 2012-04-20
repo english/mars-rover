@@ -1,10 +1,9 @@
-Given /^a plateau "([^"]*)" wide by "([^"]*)" high$/ do |width, height|
+Given /^a plateau (\d+) wide by (\d+) high$/ do |width, height|
   @plateau = MarsRover::Plateau.new(width, height)
 end
 
 Given /^a Mars Rover in position "([^"]*)" "([^"]*)" facing "([^"]*)"$/ do |x, y, orientation|
-  rover = @plateau.new_rover(x, y)
-  @rover.orientation = orientation
+  @rover = @plateau.new_rover(x, y, orientation)
 end
 
 When /^I tell the rover "([^"]*)"$/ do |command|
