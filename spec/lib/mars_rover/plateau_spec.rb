@@ -8,5 +8,12 @@ module MarsRover
       subject.width.should  == 5
       subject.height.should == 9
     end
+
+    describe :new_rover do
+      it "Returns a new rover assigned to this plateau" do
+        rover = subject.new_rover(1, 2, 'E')
+        rover.plateau.should equal?(subject) # same object
+      end
+    end
   end
 end

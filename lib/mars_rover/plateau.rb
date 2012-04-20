@@ -7,7 +7,11 @@ module MarsRover
       @height = height
     end
 
-    def new_rover(x, y)
+    def new_rover(x_arg, y_arg, orientation)
+      x = Integer(x_arg)
+      y = Integer(y_arg)
+
+      Rover.new(x, y, orientation)
     end
   end
 end
