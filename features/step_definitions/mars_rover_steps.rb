@@ -3,8 +3,7 @@ Given /^a plateau "([^"]*)" wide by "([^"]*)" high$/ do |x, y|
 end
 
 Given /^a Mars Rover in position "([^"]*)" "([^"]*)" facing "([^"]*)"$/ do |x, y, orientation|
-  @rover = MarsRover::Rover.new(x, y)
-  @plateau.add_rover(@rover)
+  rover = @plateau.new_rover(x, y)
   @rover.orientation = orientation
 end
 
@@ -13,8 +12,8 @@ When /^I tell the rover "([^"]*)"$/ do |command|
 end
 
 Then /^the rover's position should be "([^"]*)" "([^"]*)"$/ do |x, y|
-  @rover.position_x.should == x
-  @rover.position_y.should == y
+  @rover.x_coordinate.should == x
+  @rover.y_coordinate.should == y
 end
 
 Then /^the rover's orientation should be "([^"]*)"$/ do |orientation|
