@@ -2,7 +2,7 @@ require "spec_helper"
 
 module MarsRover
   describe Rover do
-    subject { Rover.new(0, 2, 'N') }
+    subject { Rover.new(0, 2, 'N', mock('Plateau')) }
 
     it "has a starting x and y coordinate" do
       subject.x_coordinate.should == 0
@@ -17,14 +17,14 @@ module MarsRover
       it "raises an error when it isn't N, E, S or W" do
         %w(A 2 J sd | Z s).each do |bad_orientation|
           lambda {
-            Rover.new(0, 0, bad_orientation)
+            Rover.new(0, 0, bad_orientation, mock('Plateau'))
           }.should raise_error(InvalidOrientationError)
         end
 
         # I maybe shouldn't test that something *doesn't* raise an exception?
         %w(N E S W).each do |good_orientation|
           lambda {
-            Rover.new(0, 0, good_orientation)
+            Rover.new(0, 0, good_orientation, mock('Plateau'))
           }.should_not raise_error(InvalidOrientationError)
         end
       end
@@ -33,7 +33,7 @@ module MarsRover
     describe :command do
       context "when given an 'M'" do
         # Repeated here for clarity
-        subject { Rover.new(0, 0, 'N') }
+        subject { Rover.new(0, 0, 'N', mock('Plateau')) }
 
         it "raises an error on a bad command" do
           %w(0 A z ? #).each do |bad_command|

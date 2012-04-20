@@ -3,17 +3,18 @@ module MarsRover
   class InvalidCommandError < StandardError; end
 
   class Rover
-    attr_reader :x_coordinate, :y_coordinate, :orientation
+    attr_reader :x_coordinate, :y_coordinate, :orientation, :plateau
 
     VALID_ORIENTATIONS = %w(N E S W)
     VALID_COMMANDS     = %w(L R M)
 
-    def initialize(x, y, orientation)
+    def initialize(x, y, orientation, plateau)
       raise InvalidOrientationError unless valid_orientation?(orientation)
 
       @x_coordinate = x
       @y_coordinate = y
       @orientation  = orientation
+      @plateau      = plateau
     end
 
     def command(code)

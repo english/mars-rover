@@ -11,7 +11,7 @@ module MarsRover
       x = Integer(x_arg)
       y = Integer(y_arg)
 
-      Rover.new(x, y, orientation)
+      Rover.new(x, y, orientation, self)
     end
   end
 end
