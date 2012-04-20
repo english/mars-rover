@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency("guard-cucumber", "~> 0.7.5")
   gem.add_development_dependency("ruby_gntp", "~> 0.3.4")
   gem.add_development_dependency("simplecov", "~> 0.6.2")
+  gem.add_development_dependency("fivemat", "~> 1.0.0")
 end

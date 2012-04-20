@@ -8,5 +8,5 @@ Feature: Mars Rover
     Given a plateau "2" wide by "2" high
     And a Mars Rover in position "0" "0" facing "North"
     When I tell the rover "M"
-    Then the rover's position should be "0,1"
-    And the rover's orientation should be N
+    Then the rover's position should be "0" "1"
+    And the rover's orientation should be "N"
