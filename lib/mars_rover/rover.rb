@@ -2,7 +2,7 @@ module MarsRover
   class InvalidOrientationError < StandardError; end
 
   class Rover
-    attr_reader :orientation, :plateau
+    attr_reader :plateau
 
     VALID_ORIENTATIONS = %w(N E S W)
 
@@ -10,8 +10,8 @@ module MarsRover
       raise InvalidOrientationError unless valid_orientation?(orientation)
 
       @position  = Position.new(x, y)
-      @orientation = orientation
-      @plateau     = plateau
+      @orientation = Orientation.new(orientation)
+      @plateau = plateau
     end
 
     def x_coordinate
@@ -22,6 +22,10 @@ module MarsRover
       @position.y
     end
 
+    def orientation
+      @orientation.direction
+    end
+
     def command(code)
       code.each_char do |char|
         Command.new(self, char).execute
@@ -29,25 +33,15 @@ module MarsRover
     end
 
     def move
-      @position.move(@orientation)
+      @position.move(orientation)
     end
 
     def turn_right
-      @orientation = case @orientation
-                     when 'N' then 'E'
-                     when 'E' then 'S'
-                     when 'S' then 'W'
-                     when 'W' then 'N'
-                     end
+      @orientation.turn_right
     end
 
     def turn_left
-      @orientation = case @orientation
-                     when 'N' then 'W'
-                     when 'E' then 'N'
-                     when 'S' then 'E'
-                     when 'W' then 'S'
-                     end
+      @orientation.turn_left
     end
 
     private
