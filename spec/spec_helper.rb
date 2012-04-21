@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'mars_rover'
 
 RSpec.configure do |config|

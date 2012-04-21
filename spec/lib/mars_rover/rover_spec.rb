@@ -2,7 +2,7 @@ require "spec_helper"
 
 module MarsRover
   describe Rover do
-    let(:plateau) { mock('Plateau') }
+    let(:plateau) { Plateau.new(5, 5) }
     subject { Rover.new(0, 2, 'N', plateau) }
 
     it "has a starting x and y coordinate" do
@@ -112,8 +112,48 @@ module MarsRover
     end
 
     describe :command do
-      # Repeated here for clarity
       subject { Rover.new(0, 0, 'N', plateau) }
+
+      it "raises an error on a bad command" do
+        %w(0 A z ? #).each do |bad_command|
+          lambda {
+            subject.command(bad_command)
+          }.should raise_error(InvalidCommandError)
+        end
+
+        %w(R L M).each do |good_command|
+          lambda {
+            subject.command(good_command)
+          }.should_not raise_error(InvalidCommandError)
+        end
+      end
+
+      it "raises an error when asked to move past the plateau limits" do
+        plateau = Plateau.new(5, 5)
+        subject = plateau.new_rover(5, 5, 'N')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+
+        subject = plateau.new_rover(5, 5, 'E')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+
+        subject = plateau.new_rover(0, 5, 'N')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+
+        subject = plateau.new_rover(0, 5, 'W')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+
+        subject = plateau.new_rover(5, 0, 'S')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+
+        subject = plateau.new_rover(5, 0, 'E')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+
+        subject = plateau.new_rover(0, 0, 'W')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+
+        subject = plateau.new_rover(0, 0, 'S')
+        lambda { subject.move }.should raise_error(FellOffPlateauError)
+      end
 
       describe "single commands" do
         context "when given an 'M'" do

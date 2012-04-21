@@ -5,8 +5,8 @@ module MarsRover
 		def_delegators :@coordinate, :x, :y
 		def_delegators :@orientation, :direction, :turn_left, :turn_right
 
-		def initialize(x, y, orientation)
-			@coordinate = Coordinate.new(x, y)
+		def initialize(x, y, orientation, plateau)
+			@coordinate = Coordinate.new(x, y, plateau)
 			@orientation = Orientation.new(orientation)
 		end
 

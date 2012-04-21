@@ -1,10 +1,7 @@
 module MarsRover
   class Rover
-    attr_reader :plateau
-
     def initialize(x, y, orientation, plateau)
-      @location = Location.new(x, y, orientation)
-      @plateau     = plateau
+      @location = Location.new(x, y, orientation, plateau)
     end
 
     def x_coordinate
