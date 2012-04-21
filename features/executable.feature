@@ -10,7 +10,7 @@ Feature: mars-rover executable
 			MMRMMRMRRM
 			"""
 		When I run `mars-rover input.txt`
-		Then the output should contain exactly:
+		Then the output should contain:
 			"""
 			1 3 N
 			5 1 E
