@@ -5,7 +5,7 @@ Feature: Mars Rover
   terrain to send back to Earth.
 
   Scenario Outline: Rover responds to single command
-    Given a plateau 2 wide by 2 high
+    Given a plateau with upper-right coordinates of 2 2
     And a Mars Rover in position 0 0 facing "N"
     When I tell the rover "<Command>"
     Then the rover's position should be <Position X> <Position Y>
@@ -18,7 +18,7 @@ Feature: Mars Rover
       | L       | 0          | 0          | W           |
 
   Scenario Outline: Rover responds to multiple commands
-    Given a plateau 4 wide by 4 high
+    Given a plateau with upper-right coordinates of 4 4
     And a Mars Rover in position 1 1 facing "E"
     When I tell the rover "<Command>"
     Then the rover's position should be <Position X> <Position Y>
@@ -36,14 +36,14 @@ Feature: Mars Rover
       | MR      | 2          | 1          | S           |
 
   Scenario: Test input 1
-    Given a plateau 5 wide by 5 high
+    Given a plateau with upper-right coordinates of 5 5
     And a Mars Rover in position 1 2 facing "N"
     When I tell the rover "LMLMLMLMM"
     Then the rover's position should be 1 3
     And the rover's orientation should be "N"
 
   Scenario: Test input 2
-    Given a plateau 5 wide by 5 high
+    Given a plateau with upper-right coordinates of 5 5
     And a Mars Rover in position 3 3 facing "E"
     When I tell the rover "MMRMMRMRRM"
     Then the rover's position should be 5 1

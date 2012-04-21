@@ -1,5 +1,5 @@
-Given /^a plateau (\d+) wide by (\d+) high$/ do |width, height|
-  @plateau = MarsRover::Plateau.new(width, height)
+Given /^a plateau with upper\-right coordinates of (\d+) (\d+)$/ do |x, y|
+  @plateau = MarsRover::Plateau.new(x, y)
 end
 
 Given /^a Mars Rover in position (\d+) (\d+) facing "([^"]*)"$/ do |x, y, orientation|
