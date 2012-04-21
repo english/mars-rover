@@ -1,7 +1,13 @@
+require 'forwardable'
+
 module MarsRover
   class InvalidOrientationError < StandardError; end
 
   class Orientation
+		extend Forwardable
+
+		def_delegators :@direction, :move
+
     def initialize(direction)
       klass = case direction
               when 'N' then North
@@ -37,6 +43,10 @@ module MarsRover
       def to_s
         'N'
       end
+
+			def move(coordinate)
+				coordinate.move_north
+			end
     end
 
     class East
@@ -51,6 +61,10 @@ module MarsRover
       def to_s
         'E'
       end
+
+			def move(coordinate)
+				coordinate.move_east
+			end
     end
 
     class South
@@ -65,6 +79,10 @@ module MarsRover
       def to_s
         'S'
       end
+
+			def move(coordinate)
+				coordinate.move_south
+			end
     end
 
     class West
@@ -79,6 +97,10 @@ module MarsRover
       def to_s
         'W'
       end
+
+			def move(coordinate)
+				coordinate.move_west
+			end
     end
   end
 end

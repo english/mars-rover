@@ -10,7 +10,7 @@ module MarsRover
 		def deploy
 			@instructions.rover_commands.each do |command|
 				rover = plateau.new_rover(command.x, command.y, command.orientation)
-				issue_command(rover, command.command)
+				issue_command(rover, command.command) # I'm not great at naming things!
 			end
 
 			self

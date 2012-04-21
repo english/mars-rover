@@ -1,7 +1,13 @@
 module MarsRover
   class InvalidCommandError < StandardError; end
 
+	# Initially had a switch statement in Command#execute which would tell the
+	# rover what to do based on the code, however I seen this as a possible
+	# 'switching on type smell'. Easy enough to create specialised classes to do
+	# their thing.
   class Command
+		# Hidden new to make this like an 'Abstract Class'. This might be a bad
+		# idea, I don't know...
     private_class_method :new
 
     def self.create(rover, code)
@@ -19,6 +25,7 @@ module MarsRover
       @rover = rover
     end
 
+		# No need to put these in their own files, only used here
     class LeftCommand < Command
       public_class_method :new
 

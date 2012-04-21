@@ -18,6 +18,8 @@ module MarsRover
 
 		def parse_plateau_coordinates
 			chars = @instructions.lines.first.chomp.split(/\W+/)
+			# No need for a full object here as it would only be a data object.
+			# Classes using this api need never know.
 			OpenStruct.new({ x: chars.shift.to_i, y: chars.shift.to_i })
 		end
 

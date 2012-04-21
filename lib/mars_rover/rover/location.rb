@@ -5,20 +5,18 @@ module MarsRover
 		extend Forwardable
 
 		def_delegators :@coordinate, :x, :y
-		def_delegators :@orientation, :direction, :turn_left, :turn_right
+		def_delegators :@orientation, :direction, :turn_left, :turn_right, :move
 
 		def initialize(x, y, orientation, plateau)
 			@coordinate = Coordinate.new(x, y, plateau)
 			@orientation = Orientation.new(orientation)
 		end
 
+		# Not to sure if this is the best design choice. There was a switch
+		# statement here on @orientation.direction that told @orientation where to
+		# move so to get rid of that I moved it down into @orientation.
 		def move
-			case @orientation.direction
-			when 'N' then @coordinate.move_north
-			when 'E' then @coordinate.move_east
-			when 'S' then @coordinate.move_south
-			when 'W' then @coordinate.move_west
-			end
+			@orientation.move(@coordinate)
 		end
 	end
 end

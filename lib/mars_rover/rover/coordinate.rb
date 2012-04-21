@@ -1,6 +1,8 @@
 module MarsRover
 	class FellOffPlateauError < StandardError; end
 
+	# This might be a bad name for the class as it would maybe suggest that all
+	# it does it represent a coordinate on a grid and not actually do anything.
   class Coordinate
     attr_reader :x, :y
 
