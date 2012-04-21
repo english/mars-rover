@@ -24,9 +24,9 @@ Feature: mars-rover executable
 		Then the output should contain "<Output>"
 
     Examples:
-      | Line One | Line Two | Line Three                     | Output                            | 
-      | 5 5      | 1 2 N    | LMLMLMLMM                      | 1 3 N                             | 
-      | 4 4      | 0 0 E    | MLMRMRRMRMLMRMRMMMMLM          | 4 4 N                             | 
-      | 6 4      | 6 0 W    | MRMLMLMRMMMMRMMMMRMMMMMMRMMMM  | 6 0 S                             | 
-      | 6 4      | 6 0 W    | MRMLMLMRMMMMRMMMMRMMMMMMRMMMMM | This rover fell of the Plateau :( | 
-      | 4 4      | 1 1 S    | MMM                            | This rover fell of the Plateau :( | 
+      | Line One | Line Two | Line Three                     | Output                             | 
+      | 5 5      | 1 2 N    | LMLMLMLMM                      | 1 3 N                              | 
+      | 4 4      | 0 0 E    | MLMRMRRMRMLMRMRMMMMLM          | 4 4 N                              | 
+      | 6 4      | 6 0 W    | MRMLMLMRMMMMRMMMMRMMMMMMRMMMM  | 6 0 S                              | 
+      | 6 4      | 6 0 W    | MRMLMLMRMMMMRMMMMRMMMMMMRMMMMM | This rover fell off the Plateau :( | 
+      | 4 4      | 1 1 S    | MMM                            | This rover fell off the Plateau :( | 
