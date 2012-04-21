@@ -31,28 +31,37 @@ module MarsRover
     end
 
     describe :command do
-      context "when given an 'M'" do
-        # Repeated here for clarity
-        subject { Rover.new(0, 0, 'N', mock('Plateau')) }
+      # Repeated here for clarity
+      subject { Rover.new(0, 0, 'N', mock('Plateau')) }
 
-        it "raises an error on a bad command" do
-          %w(0 A z ? #).each do |bad_command|
-            lambda {
-              subject.command(bad_command)
-            }.should raise_error(InvalidCommandError)
-          end
-
-          %w(R L M).each do |good_command|
-            lambda {
-              subject.command(good_command)
-            }.should_not raise_error(InvalidCommandError)
-          end
+      it "raises an error on a bad command" do
+        %w(0 A z ? #).each do |bad_command|
+          lambda {
+            subject.command(bad_command)
+          }.should raise_error(InvalidCommandError)
         end
 
+        %w(R L M).each do |good_command|
+          lambda {
+            subject.command(good_command)
+          }.should_not raise_error(InvalidCommandError)
+        end
+      end
+
+      context "when given an 'M'" do
         it "moves the Rover one space in its current direction" do
           subject.command('M')
           subject.x_coordinate.should == 0
           subject.y_coordinate.should == 1
+        end
+      end
+
+      context "when given an 'R'" do
+        it "turns 90 degrees right" do
+          subject.command('R')
+          subject.x_coordinate.should == 0
+          subject.y_coordinate.should == 0
+          subject.orientation.should == 'E'
         end
       end
     end

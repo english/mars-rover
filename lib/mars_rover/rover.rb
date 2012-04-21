@@ -20,7 +20,11 @@ module MarsRover
     def command(code)
       raise InvalidCommandError unless valid_command?(code)
 
-      move
+      if code == 'M'
+        move
+      elsif code == 'R'
+        turn_right
+      end
     end
 
     private
@@ -35,6 +39,10 @@ module MarsRover
 
     def move
       @y_coordinate += 1
+    end
+
+    def turn_right
+      @orientation = 'E'
     end
   end
 end
