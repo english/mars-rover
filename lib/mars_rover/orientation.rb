@@ -1,8 +1,14 @@
 module MarsRover
+  class InvalidOrientationError < StandardError; end
+
   class Orientation
     attr_reader :direction
 
+    VALID_ORIENTATIONS = %w(N E S W)
+
     def initialize(direction)
+      raise InvalidOrientationError unless valid_orientation?(direction)
+
       @direction = direction
     end
 
@@ -22,6 +28,12 @@ module MarsRover
                    when 'S' then 'E'
                    when 'W' then 'S'
                    end
+    end
+    
+    private
+
+    def valid_orientation?(orientation)
+      VALID_ORIENTATIONS.include?(orientation)
     end
   end
 end
