@@ -2,27 +2,45 @@ module MarsRover
   class InvalidCommandError < StandardError; end
 
   class Command
-    VALID_COMMANDS = %w(L R M)
+    private_class_method :new
 
-    def initialize(rover, code)
-      raise InvalidCommandError unless valid_command?(code)
+    def self.create(rover, code)
+      klass = case code
+        when 'M' then MoveCommand
+        when 'R' then RightCommand
+        when 'L' then LeftCommand
+        else raise InvalidCommandError
+      end
 
-      @rover = rover
-      @code  = code
+      klass.new(rover)
     end
 
-    def execute
-      case @code
-      when 'M' then @rover.move
-      when 'R' then @rover.turn_right
-      when 'L' then @rover.turn_left
+    def initialize(rover)
+      @rover = rover
+    end
+
+    class LeftCommand < Command
+      public_class_method :new
+
+      def execute
+        @rover.turn_left
       end
     end
 
-    private
+    class RightCommand < Command
+      public_class_method :new
 
-    def valid_command?(code)
-      VALID_COMMANDS.include?(code)
+      def execute
+        @rover.turn_right
+      end
+    end
+
+    class MoveCommand < Command
+      public_class_method :new
+
+      def execute
+        @rover.move
+      end
     end
   end
 end

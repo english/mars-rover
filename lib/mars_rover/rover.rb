@@ -18,7 +18,7 @@ module MarsRover
 
     def command(code)
       code.each_char do |char|
-        Command.new(self, char).execute
+        Command.create(self, char).execute
       end
 
       self
