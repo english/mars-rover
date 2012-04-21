@@ -34,3 +34,17 @@ Feature: Mars Rover
       | LL      | 1          | 1          | W           |
       | ML      | 2          | 1          | N           |
       | MR      | 2          | 1          | S           |
+
+  Scenario: Test input 1
+    Given a plateau 5 wide by 5 high
+    And a Mars Rover in position 1 2 facing "N"
+    When I tell the rover "LMLMLMLMM"
+    Then the rover's position should be 1 3
+    And the rover's orientation should be "N"
+
+  Scenario: Test input 2
+    Given a plateau 5 wide by 5 high
+    And a Mars Rover in position 3 3 facing "E"
+    When I tell the rover "MMRMMRMRRM"
+    Then the rover's position should be 5 1
+    And the rover's orientation should be "E"
