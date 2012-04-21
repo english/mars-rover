@@ -1,12 +1,18 @@
 # README
 To run the application with the sample input, in the project root run
 `bin/mars-rover sample_input.txt sample_input.txt`. Alternatively run the
-Cucumber features to test the output, particularly features/executable.feature. 
+Cucumber features which apply the sample test input and examine the output,
+particularly features/executable.feature. 
 
 ## Assumptions
 
 ### Performance
 I have assumed performance wasn't an issue and have not measured that at all.
+
+### Exceptions
+I've done some basic error checking for the format of the input file and then
+for valid directions, and movements. Error messages are displayed in the output
+rather than the system halting abruptly with an ugly error message.
 
 ### Plateau
 I assumed that as the Plateau's upper limits coordinates were given, then there

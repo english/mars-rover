@@ -15,7 +15,7 @@ module MarsRover
 
 			self
 		rescue BadlyFormattedInputError
-			@output << "Your input wasn't ill-formatted"
+			@output << "Your input was ill-formatted"
 		end
 
 		def output
