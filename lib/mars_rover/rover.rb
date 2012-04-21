@@ -3,21 +3,20 @@ module MarsRover
     attr_reader :plateau
 
     def initialize(x, y, orientation, plateau)
-      @position    = Position.new(x, y)
-      @orientation = Orientation.new(orientation)
+      @location = Location.new(x, y, orientation)
       @plateau     = plateau
     end
 
     def x_coordinate
-      @position.x
+      @location.x
     end
 
     def y_coordinate
-      @position.y
+      @location.y
     end
 
     def orientation
-      @orientation.direction
+      @location.direction
     end
 
     def command(code)
@@ -29,19 +28,19 @@ module MarsRover
     end
 
     def move
-      @position.move(orientation)
+      @location.move
 
       self
     end
 
     def turn_right
-      @orientation.turn_right
+      @location.turn_right
 
       self
     end
 
     def turn_left
-      @orientation.turn_left
+      @location.turn_left
 
       self
     end
