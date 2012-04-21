@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/mars_rover'
+
+raise "Usage: mars-rover input.txt" unless ARGV.size == 1
+
+input = File.read(ARGV.first).strip
+
+deployment = MarsRover.new_deployment(input)
+
+begin
+	deployment.deploy
+rescue MarsRover::FellOffPlateauError
+	puts "Sorry, one of your rovers fell off the Plateau :("
+	exit -1
+end
+
+print deployment.output
+
+exit 0

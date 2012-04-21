@@ -1,3 +1,5 @@
+require 'forwardable'
+
 module MarsRover
 	class Location
 		extend Forwardable
