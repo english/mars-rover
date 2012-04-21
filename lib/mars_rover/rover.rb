@@ -16,19 +16,36 @@ module MarsRover
     end
 
     def command(code)
-      Command.new(self, code).execute
+      code.each_char do |char|
+        Command.new(self, char).execute
+      end
     end
 
     def move
-      @y_coordinate += 1
+      case @orientation
+      when 'N' then @y_coordinate += 1
+      when 'E' then @x_coordinate += 1
+      when 'S' then @y_coordinate -= 1
+      when 'W' then @x_coordinate -= 1
+      end
     end
 
     def turn_right
-      @orientation = 'E'
+      @orientation = case @orientation
+                     when 'N' then 'E'
+                     when 'E' then 'S'
+                     when 'S' then 'W'
+                     when 'W' then 'N'
+                     end
     end
 
     def turn_left
-      @orientation = 'W'
+      @orientation = case @orientation
+                     when 'N' then 'W'
+                     when 'E' then 'N'
+                     when 'S' then 'E'
+                     when 'W' then 'S'
+                     end
     end
 
     private
