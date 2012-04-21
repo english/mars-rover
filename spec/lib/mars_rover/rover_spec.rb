@@ -34,20 +34,6 @@ module MarsRover
       # Repeated here for clarity
       subject { Rover.new(0, 0, 'N', mock('Plateau')) }
 
-      it "raises an error on a bad command" do
-        %w(0 A z ? #).each do |bad_command|
-          lambda {
-            subject.command(bad_command)
-          }.should raise_error(InvalidCommandError)
-        end
-
-        %w(R L M).each do |good_command|
-          lambda {
-            subject.command(good_command)
-          }.should_not raise_error(InvalidCommandError)
-        end
-      end
-
       context "when given an 'M'" do
         it "moves the Rover one space in its current direction" do
           subject.command('M')
