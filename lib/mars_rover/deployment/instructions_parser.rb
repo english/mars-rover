@@ -1,6 +1,8 @@
 require 'ostruct'
 
 module MarsRover
+	class BadlyFormattedInputError < StandardError; end
+
 	class InstructionsParser
 		def initialize(instructions)
 			@instructions = instructions.chomp
@@ -8,10 +10,14 @@ module MarsRover
 
 		def plateau_coordinates
 			@pateau_coordinates ||= parse_plateau_coordinates
+		rescue
+			raise BadlyFormattedInputError
 		end
 
 		def rover_commands
 			@rover_commands ||= parse_rover_commands
+		rescue
+			raise BadlyFormattedInputError
 		end
 
 		private

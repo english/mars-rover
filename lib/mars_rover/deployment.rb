@@ -14,6 +14,8 @@ module MarsRover
 			end
 
 			self
+		rescue BadlyFormattedInputError
+			@output << "Your input wasn't ill-formatted"
 		end
 
 		def output
@@ -26,7 +28,7 @@ module MarsRover
 			rover.command(command)
 			@output << BasicRoverPresenter.new(rover).to_s
 		rescue FellOffPlateauError
-			@output << "This rover fell of the Plateau :("
+			@output << "This rover fell off the Plateau :("
 		end
 
 		def plateau
