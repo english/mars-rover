@@ -24,6 +24,8 @@ module MarsRover
         move
       elsif code == 'R'
         turn_right
+      elsif code == 'L'
+        turn_left
       end
     end
 
@@ -43,6 +45,10 @@ module MarsRover
 
     def turn_right
       @orientation = 'E'
+    end
+
+    def turn_left
+      @orientation = 'W'
     end
   end
 end

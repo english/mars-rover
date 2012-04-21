@@ -64,6 +64,15 @@ module MarsRover
           subject.orientation.should == 'E'
         end
       end
+
+      context "when given an 'L'" do
+        it "turns 90 degrees left" do
+          subject.command('L')
+          subject.x_coordinate.should == 0
+          subject.y_coordinate.should == 0
+          subject.orientation.should == 'W'
+        end
+      end
     end
   end
 end
