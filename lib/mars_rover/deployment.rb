@@ -13,7 +13,7 @@ module MarsRover
 				rover = plateau.new_rover(command.x, command.y, command.orientation)
 				rover.command(command.command)
 
-				@output << "#{rover.x_coordinate} #{rover.y_coordinate} #{rover.orientation}"
+				@output << BasicRoverPresenter.new(rover).to_s
 			end
 
 			self

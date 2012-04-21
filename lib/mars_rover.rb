@@ -7,6 +7,7 @@ require 'mars_rover/orientation'
 require 'mars_rover/location'
 require 'mars_rover/deployment'
 require 'mars_rover/instructions_parser'
+require 'mars_rover/basic_rover_presenter'
 
 module MarsRover
   def self.new_deployment(instructions)
