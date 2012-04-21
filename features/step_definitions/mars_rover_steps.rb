@@ -18,4 +18,3 @@ end
 Then /^the rover's orientation should be "([^"]*)"$/ do |orientation|
   @rover.orientation.should == orientation
 end
-
