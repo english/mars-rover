@@ -20,12 +20,10 @@ module MarsRover
     def command(code)
       raise InvalidCommandError unless valid_command?(code)
 
-      if code == 'M'
-        move
-      elsif code == 'R'
-        turn_right
-      elsif code == 'L'
-        turn_left
+      case code
+      when 'M' then move
+      when 'R' then turn_right
+      when 'L' then turn_left
       end
     end
 
