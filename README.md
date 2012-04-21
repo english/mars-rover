@@ -35,8 +35,9 @@ however I have test-drove the design and as a result of this and the subsequent
 refactorings, this is what has emerged.
 
 There is a lot of delegation going around in and around Location. I've followed
-the guidelines in Refactoring - Improving the Design of Existing Code to the
-best of my understanding but I appreciate I still have a lot to learn!
+the guidelines in [Refactoring - Improving the Design of Existing
+Code](http://martinfowler.com/books.html#refactoring) to the best of my
+understanding but I appreciate I still have a lot to learn!
 
 SimpleCov shows almost 100% for code coverage. I have read Martin Fowler's very
 recent [Test Coverage artice](http://martinfowler.com/bliki/TestCoverage.html)
