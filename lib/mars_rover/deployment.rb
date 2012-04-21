@@ -10,9 +10,7 @@ module MarsRover
 		def deploy
 			@instructions.rover_commands.each do |command|
 				rover = plateau.new_rover(command.x, command.y, command.orientation)
-				rover.command(command.command)
-
-				@output << BasicRoverPresenter.new(rover).to_s
+				issue_command(rover, command.command)
 			end
 
 			self
@@ -23,6 +21,13 @@ module MarsRover
 		end
 
 		private
+
+		def issue_command(rover, command)
+			rover.command(command)
+			@output << BasicRoverPresenter.new(rover).to_s
+		rescue FellOffPlateauError
+			@output << "This rover fell of the Plateau :("
+		end
 
 		def plateau
 			@plateau ||= Plateau.new(plateau_limits.x, plateau_limits.y)
