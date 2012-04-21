@@ -1,3 +1,9 @@
+require_relative 'rover/basic_rover_presenter'
+require_relative 'rover/command'
+require_relative 'rover/coordinate'
+require_relative 'rover/location'
+require_relative 'rover/orientation'
+
 module MarsRover
   class Rover
     def initialize(x, y, orientation, plateau)

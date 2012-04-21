@@ -1,3 +1,5 @@
+require_relative 'deployment/instructions_parser'
+
 module MarsRover
 	class Deployment
 		def initialize(instructions)
@@ -6,9 +8,6 @@ module MarsRover
 		end
 
 		def deploy
-			plateau_limits = @instructions.plateau_coordinates
-			plateau = Plateau.new(plateau_limits.x, plateau_limits.y)
-
 			@instructions.rover_commands.each do |command|
 				rover = plateau.new_rover(command.x, command.y, command.orientation)
 				rover.command(command.command)
@@ -21,6 +20,16 @@ module MarsRover
 
 		def output
 			@output.join("\n")
+		end
+
+		private
+
+		def plateau
+			@plateau ||= Plateau.new(plateau_limits.x, plateau_limits.y)
+		end
+
+		def plateau_limits
+			@plateau_limits ||= @instructions.plateau_coordinates
 		end
 	end
 end
